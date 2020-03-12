@@ -1,0 +1,21 @@
+using System;
+using System.Linq;
+
+namespace _3.__Extract_File
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string input = Console.ReadLine();
+
+            int indexOfname = input.LastIndexOf('\\') + 1;
+            string nameAndExtension = input.Substring(indexOfname);
+            int indexOfextension = nameAndExtension.LastIndexOf('.') + 1;
+            string name = nameAndExtension.Substring(0,indexOfextension-1);
+            string type = nameAndExtension.Substring(indexOfextension);
+            Console.WriteLine($"File name: {name}");
+            Console.WriteLine($"File extension: {type}");
+        }
+    }
+}
