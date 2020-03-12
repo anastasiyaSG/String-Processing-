@@ -1,0 +1,53 @@
+using System;
+
+namespace _2.__Character_Multiplier
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] input = Console.ReadLine()
+                .Split();
+            int sumofall = 0;
+            string first = input[0];
+            string second = input[1];
+            if (first.Length > second.Length)
+            { int index = second.Length;
+                int lenght = first.Length - second.Length;
+                string additional = first.Substring(index, lenght);
+
+               sumofall= GetSumofAll(first, second, additional, sumofall);
+            }
+            if (second.Length > first.Length)
+            {
+                int index = first.Length;
+                int lenght = second.Length - first.Length;
+                string additional = second.Substring(index, lenght);
+              sumofall=  GetSumofAll(second, first, additional, sumofall);
+            }
+            else
+            { sumofall = GetSumofAll(second, first, null, sumofall); }
+            Console.WriteLine(sumofall);
+        }
+
+        private static int GetSumofAll(string first, string second, string additional,int sum)
+        {
+            for (int i = 0; i < second.Length; i++)
+            {
+                int curent = first[i] * second[i];
+                sum+=curent;
+
+            }
+            if (first.Length != second.Length)
+            {
+                for (int i = 0; i < additional.Length; i++)
+                {
+                    int current = additional[i];
+                    sum += current;
+
+                }
+            }
+            return sum;
+        }
+    }
+}
