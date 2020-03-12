@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Valid_Username
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] userNames = Console.ReadLine()
+                .Split(", ");
+            List<string> validUsers = new List<string>();
+            bool content = false;
+            foreach (string name in userNames)
+            {
+                if (name.Length >= 3 && name.Length <= 16)
+                {
+                    for (int i = 0; i < name.Length; i++)
+                    {
+                        char check = name[i];
+                        if (char.IsLetterOrDigit(check) || check == '_' || check == '-')
+                        {
+                            content = true;
+                        }
+                        else if (check != '_' && check != '-')
+                        {
+                            content = false;
+                            break;
+                        }
+                    }
+
+
+                    if (content == true)
+                    { validUsers.Add(name); }
+
+                    else
+                    { continue; }
+                }
+            }
+            
+
+            Console.WriteLine(String.Join(Environment.NewLine,validUsers));
+        }
+    }
+}
