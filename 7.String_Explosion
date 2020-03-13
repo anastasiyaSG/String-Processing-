@@ -1,0 +1,34 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace _7.String_Explosion
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string input = Console.ReadLine();
+            int strenght = 0;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                char Symbol = input[i];
+                if (Symbol == '>')
+                {
+                    strenght += int.Parse(input[i + 1].ToString());
+                    continue;
+                }
+                if (strenght > 0)
+                {
+                    input = input.Remove(i, 1);
+                    i--;
+                    strenght--;
+                }
+            }
+
+            Console.WriteLine(input);
+        }
+    }
+}
