@@ -1,0 +1,83 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace _8.__Letters_Change_Numbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> input = new List<string>();
+            input = Console.ReadLine().Split(" ",StringSplitOptions.RemoveEmptyEntries).ToList();
+            double totalSum = 0;
+
+            for (int i = 0; i < input.Count; i++)
+            {
+                StringBuilder sb = new StringBuilder();
+                char[] letterOne = input[i].ToCharArray();
+
+                if (letterOne.Length < 4 && letterOne.Length > 4)
+                { break; }
+
+                char firstLetter = letterOne[0];
+                bool isItUpperFirst = GetUpperorLower(firstLetter);
+               
+                char secondLetter = letterOne[letterOne.Length-1];
+                bool isItUpperSecond = GetUpperorLower(secondLetter);
+               
+                double first = GetLetter(firstLetter);
+                double second = GetLetter(secondLetter);
+
+                if (first < 1 || first > 26 || second < 1 || second > 26)
+                { break;
+                }
+                for (int j = 1; j < letterOne.Length-1; j++)
+                {
+                    sb.Append(letterOne[j]);
+
+                }
+                
+                double current = 0;
+                int firstNumber = int.Parse(sb.ToString());
+
+
+                if (isItUpperFirst == true)
+                { current = firstNumber / first;
+                }
+                if (isItUpperFirst == false)
+                { current = firstNumber * first; }
+                if (isItUpperSecond == true)
+                { current -= second; }
+                if (isItUpperSecond == false)
+                { current += second; }
+                totalSum += current;
+                
+
+
+                
+
+            }
+            Console.WriteLine($"{totalSum:f2}");
+        }
+
+        private static bool GetUpperorLower(char firstLetter)
+        {
+            bool x = false;
+            if (char.IsUpper(firstLetter))
+            { x = true; }
+            else
+            { x = false; }
+            return x;
+        }
+
+        private static int GetLetter(char firstLetter)
+        {
+            firstLetter = char.ToLower(firstLetter);
+            int symbol = ((int)firstLetter)-96;
+            return symbol;
+        }
+    }
+}
